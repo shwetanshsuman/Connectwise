@@ -27,7 +27,7 @@ namespace ConnectwiseWebApplication.CommonMethods
                 client.EnableSsl = true;
                 client.Port = 587;
                 // Provide authentication information with Gmail SMTP server to authenticate your sender account
-                client.Credentials = new System.Net.NetworkCredential("shwetansh.suman@globallogic.com", "Backstreet@10");
+                client.Credentials = new System.Net.NetworkCredential("shwetansh.suman@globallogic.com", "");
 
                 client.Send(newMail); // Send the constructed mail
             }
