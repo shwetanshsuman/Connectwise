@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ConnectwiseWebApplication.Models.Transaction>;
+@{
+    Layout = "~/Views/Shared/_AfterLoginUser.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="~/css/partialtableinvoice.css">
+    <link rel="stylesheet" href="~/css/dashcard.css" />
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+</head>
+
+
+<div class="grey-bg container-fluid">
+    <section id="stats-subtitle">
+        <div class="row">
+            <div class="col-xl-6 col-md-12">
+                <div class="card overflow-hidden">
+                    <div class="card-content">
+                        <div class="card-body cleartfix">
+                            <div class="media align-items-stretch">
+                                <div class="">
+                                    <i class="fas fa-file-invoice primary font-large-2 mr-2"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="card-title">Invoice Title: @ViewData["title"]</h5>
+                                    @if (Convert.ToInt32(ViewData["status"]) == 1)
+                                    {
+                                        <span class="card-text">Status: <span class="text-success">Paid</span></span>
+                                    }
+                                    @if (Convert.ToInt32(ViewData["status"]) == 0)
+                                    {
+                                        <p class="card-text">Status: <span class="text-danger">Unpaid</span></p>
+                                    }
+                                    <p class="card-text">Total Amount: @ViewData["totalamount"]</p>
+                                    <p class="card-text">Due Amount: @ViewData["DueAmount"]</p>
+                                    <p class="card-text">Generated For: @ViewData["Genratedforemail"]</p>
+                                    <p class="card-text">Created Date: @ViewData["createdDate"]</p>
+                                    <p class="card-text">Due Date: @ViewData["DueDate"]</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <a asp-action="Index" asp-controller="User" class="btn btn-block text-white" style="background-color:#2B3467">Go Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<br />
+<br />
+<br />
+<div class="flex-secondcontainer">
+    <div class="second">
+        <div class="heading" style="background-color:#2B3467">
+            <div class="w3-container text-white m-1" style="background-color:#2B3467"> <h3>Transactions for Invoice @ViewData["title"]</h3> </div>
+        </div>
+        @Html.Partial("_TransactionTable",Model)
+    </div>
+</div>

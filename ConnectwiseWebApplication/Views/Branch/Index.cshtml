@@ -1,0 +1,90 @@
+﻿@model ConnectwiseWebApplication.Models.Branch
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AddBranch.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+
+<div class="grey-bg container-fluid">
+    <div class="card">
+        <h1 class="mt-3 text-center">Add Branch</h1>
+        <form asp-action="AddBranch">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row m-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="BranchName" class="control-label">Branch Name</label>
+                        <input asp-for="BranchName" class="form-control" placeholder="Enter the Branch Name" required />
+                        <span asp-validation-for="BranchName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Street" class="control-label"></label>
+                        <input asp-for="Street" type="text" class="form-control" placeholder="Enter the Street Name" required />
+                        <span asp-validation-for="Street" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="LandMark" class="control-label">Landmark</label>
+                        <input asp-for="LandMark" type="text" class="form-control" placeholder="Enter the Nearest Landmark" required />
+                        <span asp-validation-for="LandMark" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Country" class="control-label"></label>
+                        <select id="selectCountry" class="countries form-control" asp-for="Country" required>
+                            <option value="" selected="selected">Select country</option>
+                        </select>
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="State" class="control-label"></label>
+                        <select id="selectState" class="form-control" asp-for="State" required>
+                            <option value="" selected="selected">Please select the country first</option>
+                        </select>
+                        <span asp-validation-for="State" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="City" class="control-label"></label>
+                        <select id="selectCity" class="form-control" asp-for="City" required>
+                            <option value="" selected="selected">Please select the state first</option>
+                        </select>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Pincode" class="control-label"></label>
+                        <input asp-for="Pincode" type="number" min="100000" max="999999" class="form-control" placeholder="Enter the Pincode" required />
+                        <span asp-validation-for="Pincode" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-3">
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-block text-white" style="background-color:#2B3467" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

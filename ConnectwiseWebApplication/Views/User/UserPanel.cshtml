@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ConnectwiseWebApplication.Models.Invoice>
+
+
+
+@{
+    Layout = "~/Views/Shared/_AfterLoginUser.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="/css/dashcard.css" />
+    <link rel="stylesheet" href="/css/DashboardCards.css" />
+</head>
+
+<h1>Dashboard </h1>
+
+<div style="display:flex">
+    <div class="card mx-3">
+        <div class="card-content">
+            <h2>Total Invoices</h2>
+            <p class="invoice-count">25</p>
+        </div>
+    </div>
+    <div class="card mx-3">
+        <div class="card-content">
+            <h2>Pending Invoices</h2>
+            <p class="invoice-count">25</p>
+        </div>
+    </div>
+    <div class="card mx-3">
+        <div class="card-content">
+            <h2>Total Users</h2>
+            <p class="invoice-count">25</p>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+
+
+@*<div class="flex-container">
+    <div class="first">
+    <div class="heading">
+    <div class="w3-container w3-teal"> <h3> Branches </h3> </div>
+    </div>
+    @Html.Partial("_BranchTable",(IEnumerable<Branch>)Model.Branches)
+    </div>*@
+@*<div class="first">
+        <div class="heading bg-primary">
+            <div class="w3-container bg-primary text-white"> <h3> Completed Invoices </h3> </div>
+        </div>*@
+@Html.Partial("_InvoiceTable",(IEnumerable<Invoice>)Model)
+@* </div>
+    <div class="first">
+        <div class="heading bg-primary">
+            <div class="w3-container bg-primary text-white"> <h3>Pending Invoices </h3> </div>
+        </div>*@
+@Html.Partial("_InvoiceTable",(IEnumerable<Invoice>)Model)
+@* </div>
+</div>*@
+
+

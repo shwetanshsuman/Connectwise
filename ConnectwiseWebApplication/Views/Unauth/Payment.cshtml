@@ -1,0 +1,174 @@
+﻿@using Newtonsoft.Json;
+@model ConnectwiseWebApplication.Models.PaymentModel
+
+@{
+    ViewData["Title"] = "Payment";
+    Layout = "~/Views/Shared/_BeforeLoginLayout.cshtml";
+}
+<!-- Place these scripts at the bottom of your HTML, before the closing </body> tag -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.13/jquery.validate.unobtrusive.min.js"></script>
+
+<head>
+    <link rel="stylesheet" href="~/css/payment.css">
+    @*<script src="js/PaymentJavaScript.js"></script>*@
+</head>
+
+<h1>Payment</h1>
+
+
+@if (Convert.ToInt32(ViewData["errorcode"])==1)
+{
+    <div class="alert alert-danger" role="alert">
+        Transaction Failed! Sorry for inconvenience
+    </div>
+}
+<div class="container bg-light d-md-flex align-items-center">
+    <div class="card box1 shadow-sm p-md-5 p-md-5 p-4">
+        <div class="fw-bolder mb-4">
+            <span class="fas fa-dollar-sign"></span>
+            <span class="ps-1">Invoice Details </span>
+        </div>
+        <div class="d-flex flex-column">
+            <div class="d-flex align-items-center justify-content-between text">
+                <span class=""> </span>
+                <span class="fas fa-dollar-sign">
+                    <span class="ps-1"></span>
+                </span>
+            </div>
+            <div class="d-flex align-items-center justify-content-between text mb-4">
+                <span></span>
+                <span class="fas fa-dollar-sign">
+                    <span class="ps-1"></span>
+                </span>
+            </div>
+            <div class="border-bottom mb-4"></div>
+            <div class="d-flex flex-column mb-4">
+                <span class="far fa-file-alt text">
+                    <span class="ps-2">Invoice Title:</span>
+                </span>
+                <span class="ps-3">@ViewData["InvoiceTitle"] </span>
+            </div>
+
+            <div class="d-flex flex-column mb-4">
+                <span class="far fa-file-alt text">
+                    <span class="ps-2">Total Amount:</span>
+                </span>
+                <span class="ps-3">@ViewData["InvoiceTotamount"]</span>
+            </div>
+            <div class="d-flex flex-column mb-4">
+                <span class="far fa-file-alt text">
+                    <span class="ps-2">Due Amount:</span>
+                </span>
+                <span class="ps-3">@ViewData["InvoiceDueAmount"]</span>
+            </div>
+            
+        </div>
+    </div>
+    <div class="card box2 shadow-sm">
+        <div class="d-flex align-items-center justify-content-between p-md-5 p-4">
+            <span class="h5 fw-bold m-0">Payment methods</span>
+            <div class="btn btn-primary bar">
+                <span class="fas fa-bars"></span>
+            </div>
+        </div>
+        <ul class="nav nav-tabs mb-3 px-md-4 px-2">
+            <li class="nav-item">
+                <a class="nav-link px-2 active" aria-current="page" href="#">Credit Card</a>
+            </li>
+
+        </ul>
+
+        <form asp-action="PaymentGateway" asp-controller="Unauth">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex flex-column px-md-5 px-4 mb-4">
+                        <span>Credit Card</span>
+                        <div class="inputWithIcon">
+
+                            <input class="form-control" type="number" min="1000000000000000" max="9999999999999999" asp-for="CreditCardNumber" placeholder="Enter The Card Number" required>
+                            <span asp-validation-for="CreditCardNumber" class="text-danger"></span>
+                            <span class="">
+                                <img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png" alt="">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex flex-column ps-md-5 px-md-0 px-4 mb-4">
+                        <span>
+                            Expiration<span class="ps-1">Date</span>
+                        </span>
+                        <div class="inputWithIcon">
+                            <input type="month" id="duedate" min="@DateTime.Now.ToString("yyyy-MM")" placeholder="MM/YYYY" name="duedate" asp-for="CardExpiration"  required      />
+                            
+                            @*<input type="text" id="exp" name="expdate" placeholder="MM/YY" minlength="5" maxlength="5">*@
+                            <span asp-validation-for="CardExpiration" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex flex-column pe-md-5 px-md-0 px-4 mb-4">
+                        <span>Code CVV</span>
+                        <div class="inputWithIcon">
+                            <input type="password" class="form-control" asp-for="CVV" maxlength="3" placeholder="Enter The CVV" required>
+                            <span asp-validation-for="CVV" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="d-flex flex-column px-md-5 px-4 mb-4">
+                        <span>Name</span>
+                        <div class="inputWithIcon">
+                            <input class="form-control text-uppercase" type="text" asp-for="CardHolderName" placeholder="Enter The Card Holder Name" required>
+                            <span asp-validation-for="CardHolderName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="d-flex flex-column px-md-5 px-4 mb-4">
+                        <span>Amount</span>
+                        <div class="inputWithIcon">
+                            <input class="form-control text-uppercase" type="number" min="100" max=@Convert.ToInt32(ViewData["InvoiceDueAmount"]) asp-for="totalAmount" placeholder="Amount you want to pay" required>
+                            <span asp-validation-for="totalAmount" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 px-md-5 px-4 mt-3">
+
+                    @*@TempData["Regisetrationpayemntmodel"]=@JsonConvert.SerializeObject(Model)*@
+                    @*<a class="btn btn-primary w-100" asp-action="CompanyRegistrationPaymentDone" asp-controller="Company" asp-route-registrationPaymentstr="@JsonConvert.SerializeObject(Model)">Pay @ViewBag.SubscriptionFees</a>*@
+                    @*<a class="btn btn-primary w-100">Pay @ViewBag.SubscriptionFees</a>*@
+                    <button type="submit" class="btn btn-primary w-100">Pay </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+ <script>
+    var expDate = document.getElementById('exp');
+    expDate.onkeyup = function (e) {
+        if (this.value == this.lastValue) return;
+        var caretPosition = this.selectionStart;
+        var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
+        var parts = [];
+
+        for (var i = 0, len = sanitizedValue.length; i < len; i += 2) {
+            parts.push(sanitizedValue.substring(i, i + 2));
+        }
+
+        for (var i = caretPosition - 1; i >= 0; i--) {
+            var c = this.value[i];
+            if (c < '0' || c > '9') {
+                caretPosition--;
+            }
+        }
+        caretPosition += Math.floor(caretPosition / 2);
+
+        this.value = this.lastValue = parts.join('/');
+        this.selectionStart = this.selectionEnd = caretPosition;
+    }
+</script>

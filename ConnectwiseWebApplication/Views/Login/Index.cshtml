@@ -1,0 +1,80 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model ConnectwiseWebApplication.Models.User
+@{
+    Layout = "~/Views/Shared/_BeforeLoginLayout.cshtml";
+}
+@*
+    <head>
+        <link rel="stylesheet" href="/css/Login.css"/>
+    </head>*@
+    
+<div class="py-5">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-auto col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                     class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-auto col-lg-6 col-xl-4 offset-xl-1">
+                <form asp-action="Login" method="post" >
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label asp-for="UserName" class="form-label" for="form3Example3">Username</label>
+                        <input type="email" asp-for="UserName" id="form3Example3" class="form-control form-control-lg"
+                               placeholder="Enter a valid email address" required />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                        <label asp-for="Password" class="form-label" for="form3Example4">Password</label>
+                        <input asp-for="Password" type="password" id="form3Example4" class="form-control form-control-lg"
+                               placeholder="Enter password" required />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <!-- Checkbox -->
+                        <div class="form-check mb-0">
+                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                            <label class="form-check-label" for="form2Example3">
+                                Remember me
+                            </label>
+                        </div>
+                        <a asp-action="ForgetPassword" asp-controller="Login" class="text-body">Forgot password?</a>
+                    </div>
+
+                    @*<div class="Error">
+                        <p class="text-danger">@ViewBag.Message</p>
+                    </div>*@
+                    @{
+                        if((int)ViewData["Flag"]==1)
+                        {
+                            <div class="validation-summary-errors alert alert-danger" data-valmsg-summary="true">
+                                <ul>
+                                    <li>Invalid username or password</li>
+                                </ul>
+                            </div>
+                        }
+                    }
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-lg text-white"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem; background-color:#2B3467">
+                            Login
+                        </button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">
+                            Don't have an account? <a asp-action="Registration" asp-controller="Company" class="link-danger">Register</a>
+                        </p>
+                    </div>
+
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    

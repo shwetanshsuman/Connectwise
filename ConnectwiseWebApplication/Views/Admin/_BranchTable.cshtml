@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ConnectwiseWebApplication.Models.Branch>
+<head>
+    <link rel="stylesheet" href="~/css/partialtableinvoice.css">
+
+</head>
+
+
+<div style="overflow-y: auto; height: 350px;" class="scrollable-table">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Branch Name</th>
+                <th>Landmark</th>
+                <th>Street</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Pincode</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody class="">
+            <tr></tr>
+            @foreach (var branch in Model)
+            {
+                <tr>
+                    <td>@branch.BranchName</td>
+                    <td>@branch.LandMark</td>
+                    <td>@branch.Street</td>
+                    <td>@branch.City</td>
+                    <td>@branch.State</td>
+                    <td>@branch.Country</td>
+                    <td>@branch.Pincode</td>
+                    <td class="text-center"><a class="btn btn-danger" asp-action="BranchDetails" asp-controller="Branch" asp-route-id=@branch.BranchId>Details</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

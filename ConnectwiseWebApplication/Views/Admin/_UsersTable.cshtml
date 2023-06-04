@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ConnectwiseWebApplication.Models.User>
+
+<head>
+    <link rel="stylesheet" href="~/css/partialtableinvoice.css">
+
+</head>
+
+<div style="overflow-y: auto; height: 350px;" class="scrollable-table">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Created Date</th>
+                <th>Updated Date</th>
+                <th>Updated By</th>
+                
+            </tr>
+        </thead>
+        <tbody class="">
+            <tr></tr>
+            @foreach (var user in Model)
+            {
+                <tr>
+                     <td>@user.UserName</td>
+                     <td>@user.CreatedDate.ToString("d MMMM yyyy")</td>
+                     <td>@user.UpdatedDate.ToString("d MMMM yyyy")</td>
+                     <td>@user.UpdatedBy</td>
+                     
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

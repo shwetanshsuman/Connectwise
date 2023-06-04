@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ConnectwiseWebApplication.Models.Invoice>
+<head>
+    <link rel="stylesheet" href="~/css/partialtableinvoice.css">
+
+</head>
+
+<div style="overflow-y: auto; height: 350px;" class="scrollable-table">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Invoice Name</th>
+                <th>Total Amount</th>
+                <th>Due Amount</th>
+                <th>Generated Date</th>
+                <th>Due Date</th>
+            </tr>
+        </thead>
+        <tbody class="">
+            <tr></tr>
+            @foreach (var invoice in Model)
+            {
+                <tr>
+                    <td><a asp-action="Details" asp-controller="Invoices" asp-route-id=@invoice.InvoiceId>@invoice.InvoiceTitle</a></td>
+                    <td>@invoice.TotalAmount</td>
+                    <td>@invoice.DueAmount</td>
+                    <td>@invoice.CreatedDate.ToString("d MMMM yyyy")</td>
+                    <td>@invoice.DueDate.ToString("d MMMM yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

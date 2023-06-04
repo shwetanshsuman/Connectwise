@@ -1,0 +1,84 @@
+﻿@model ConnectwiseWebApplication.Models.User
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AfterLoginUser.cshtml";
+}
+<style>
+    .input-size {
+        width: 500px;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+
+<div class="grey-bg container-fluid">
+    <div class="card">
+        <h1 class="mt-3 text-center">Edit Details</h1>
+        <form asp-action="EditDetails" asp-controller="User">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="UserId" />
+            <input type="hidden" asp-for="UserName" />
+            <input type="hidden" asp-for="IsDeleted" />
+            <input type="hidden" asp-for="CreatedDate" />
+            <input type="hidden" asp-for="UpdatedDate" />
+            <input type="hidden" asp-for="CreatedBy" />
+            <input type="hidden" asp-for="BranchId" />
+            <input type="hidden" asp-for="RoleId" />
+            <input type="hidden" asp-for="UpdatedBy" />
+            <input type="hidden" asp-for="Password" />
+            <div class="row m-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label">First Name</label>
+                        <input asp-for="FirstName" placeholder="First Name" class="form-control input-size" required />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label">Last Name</label>
+                        <input asp-for="LastName" placeholder="Last Name" class="form-control input-size" required />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Department" class="control-label">Department</label>
+                        <input asp-for="Department" placeholder="Department" class="form-control input-size" required />
+                        <span asp-validation-for="Department" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="JobRole" class="control-label">Job Role</label>
+                        <input asp-for="JobRole" placeholder="Job Role" class="form-control input-size" required />
+                        <span asp-validation-for="JobRole" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-3">
+                <div class="form-group">
+                    <label asp-for="Address" class="control-label">Address</label>
+                    <input asp-for="Address" placeholder="Enter complete address" class="form-control input-size" required />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row m-3">
+                <div class="form-group text-center">
+                    <input type="submit" value="Save" class="btn btn-block text-white" style="background-color:#2B3467" />
+                </div>
+            </div>
+            
+        </form>
+    </div>
+</div>
+

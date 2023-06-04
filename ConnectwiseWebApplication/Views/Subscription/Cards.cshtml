@@ -1,0 +1,18 @@
+﻿@model ConnectwiseWebApplication.Models.RegisterationSubscription
+
+@{
+	ViewData["Title"] = "Cards";
+	Layout = "~/Views/Shared/_BeforeLoginLayout.cshtml";
+}
+<div class="h1 text-center text-dark" id="pageHeaderTitle">Subscriptions</div>
+
+<head>
+	<link rel="stylesheet" href="~/css/cards.css" />
+</head>
+<div class="container">
+	<div class="row">
+		@Html.Partial("_PartialCards",Model);
+	</div>
+</div>
+
+	

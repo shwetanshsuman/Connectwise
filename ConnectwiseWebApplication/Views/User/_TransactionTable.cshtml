@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ConnectwiseWebApplication.Models.Transaction>
+
+
+<head>
+    <link rel="stylesheet" href="~/css/partialtableinvoice.css">
+
+</head>
+<div style="overflow-y: auto; height: 350px;" class="scrollable-table">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Transaction Id</th>
+                <th>Total Amount</th>
+                <th>Payement Date</th>
+                
+            </tr>
+        </thead>
+        <tbody class="">
+            <tr></tr>
+            @foreach (var transaction in Model)
+            {
+                <tr>
+                    <td>@transaction.TransactionId</td>
+                    <td>@transaction.Amount</td>
+                    <td>@transaction.DateOfPayemnt</td>
+                    
+                   
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

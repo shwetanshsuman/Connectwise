@@ -1,0 +1,27 @@
+﻿.bg-light-yellow-green {
+    background-color: cornsilk; /* Specify your light yellow-green color */
+}
+
+
+
+
+.scrollable-table {
+    overflow-x: auto;
+}
+
+    .scrollable-table table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .scrollable-table th, .scrollable-table td {
+        padding: 8px;
+        /* Add margin or padding for spacing between columns */
+        margin-right: 10px; /* Adjust the value as per your preference */
+        
+    }
+
+
+
+
+

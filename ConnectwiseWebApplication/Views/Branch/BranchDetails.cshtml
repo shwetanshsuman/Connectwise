@@ -1,0 +1,106 @@
+﻿@model IEnumerable<ConnectwiseWebApplication.Models.User>
+@{
+    Layout = "~/Views/Shared/_AfterLogin.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/partialtableinvoice.css">
+    <link rel="stylesheet" href="~/css/dashcard.css">
+    <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+
+</head>
+@if (Convert.ToInt32(ViewData["Editmsg"]) == 1)
+{
+    <div class="alert alert-success" role="alert">
+        Branch Edited Sucessfully!
+    </div>
+}@if (Convert.ToInt32(ViewData["Editmsg"]) == -1)
+{
+    <div class="alert alert-danger" role="alert">
+        Unable to update branch. Try again later.
+    </div>
+}
+
+<div class="grey-bg container-fluid">
+    <section id="stats-subtitle">
+        <div class="row">
+            <div class="col-xl-6 col-md-12">
+                <div class="card overflow-hidden">
+                    <div class="card-content">
+                        <div class="card-body cleartfix">
+                            <div class="media align-items-stretch">
+                                <div class="align-self-center">
+                                    <i class="icon-pointer danger primary font-large-2 mr-2"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h4> @ViewData["Branchname"]</h4>
+                                    <span>@ViewData["address"]</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-6">
+                                    <a type="button" class="btn btn-block text-white" style="background-color:#2B3467" asp-action="Edit" asp-controller="Branch" asp-route-id=@Convert.ToInt32(ViewData["branchid"]) >Edit Details</a>
+                                </div>
+                                <div class="col-6">
+                                    <a type="button" class="btn btn-block text-white" style="background-color:#2B3467" asp-action="Home" asp-controller="Admin">Dashboard</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<br />
+<br />
+
+<div class="flex-secondcontainer">
+    <div class="second">
+
+        <div class="heading" style="background-color:#2B3467">
+
+            <div class="w3-container text-white" style="background-color:#2B3467">
+                <h3>Users Of @ViewData["Branchname"] Branch</h3>
+            </div>
+        </div>
+
+
+        <div style="overflow-y: auto; height: 350px;" class="scrollable-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Created Date</th>
+                        <th>Updated Date</th>
+                        <th>Updated By</th>
+
+                    </tr>
+                </thead>
+                <tbody class="bg-light-yellow-green">
+                    <tr></tr>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.UserName</td>
+                            <td>@user.CreatedDate.ToString("d MMMM yyyy")</td>
+                            <td>@user.UpdatedDate.ToString("d MMMM yyyy")</td>
+                            <td>@user.UpdatedBy</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,165 @@
+﻿@model ConnectwiseWebApplication.Models.UserPanelModels
+
+
+
+@{
+    Layout = "~/Views/Shared/_AfterLoginUser.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="/css/dashcard.css" />
+    <link rel="stylesheet" href="/css/DashboardCards.css" />
+</head>
+
+<h1>Dashboard </h1>
+
+@if (Convert.ToInt32(ViewData["Paymentstatus"]) == 1)
+{
+    <div class="alert alert-success" role="alert">
+        Transaction Done Sucessfully! You can verify or track transaction from below transaction table
+    </div>
+}
+
+<br />
+
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+<div class="grey-bg container-fluid">
+    <section id="stats-subtitle">
+        <div class="row">
+            <div class="col-xl-6 col-md-12">
+                <div class="card overflow-hidden">
+                    <div class="card-content">
+                        <div class="card-body cleartfix">
+                            <div class="media align-items-stretch">
+                                <div class="align-self-center">
+                                    <i class="fas fa-file-invoice primary font-large-2 mr-2"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h4>Total Invoice</h4>
+                                    <span>Invoices generated for you</span>
+                                </div>
+                                <div class="align-self-center">
+                                    <h1>@ViewData["TotalInvoices"]</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body cleartfix">
+                            <div class="media align-items-stretch">
+                                <div class="align-self-center">
+                                    <i class="fas fa-file-invoice danger font-large-2 mr-2"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h4>Pending Invoice</h4>
+                                    <span>Payment not/partially done</span>
+                                </div>
+                                <div class="align-self-center">
+                                    <h1>@ViewData["PendingInvoices"]</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-6 col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body cleartfix">
+                            <div class="media align-items-stretch">
+                                <div class="align-self-center">
+                                    <h1 class="mr-2">@ViewData["Transactions"]</h1>
+                                </div>
+                                <div class="media-body">
+                                    <h4>Total Transactions</h4>
+                                    <span>Transactions completed by you</span>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-credit-card success font-large-2"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="col-xl-6 col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body cleartfix">
+                            <div class="media align-items-stretch">
+                                <div class="align-self-center">
+                                    <h1 class="mr-2">@ViewData["TotalBranches"]</h1>
+                                </div>
+                                <div class="media-body">
+                                    <h4>Total Branches</h4>
+                                    <span>Branches of your company</span>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="icon-pointer danger font-large-2"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        </div>
+    </section>
+</div>
+
+<br />
+<br />
+<br />
+
+
+
+<div class="flex-container">
+    <div class="first">
+        <div class="heading" style="background-color:#2B3467">
+            <div class="w3-container text-white" style="background-color:#2B3467">
+                <h3>Completed Invoices</h3>
+            </div>
+        </div>
+        @Html.Partial("_InvoiceTable",Model.CompletedInvoice)
+    </div>
+    <div class="first">
+        <div class="heading" style="background-color:#2B3467">
+            <div class="w3-container text-white" style="background-color:#2B3467"> <h3>Pending Invoices </h3> </div>
+        </div>
+        @Html.Partial("_PendingInvoiceTable",Model.PendingInvoice)
+    </div>
+</div>
+<div class="flex-secondcontainer">
+    <div class="second">
+        <div class="heading" style="background-color:#2B3467">
+            <div class="w3-container text-white" style="background-color:#2B3467">
+                <h3>Transactions</h3>
+            </div>
+        </div>
+        @Html.Partial("_Transactiontable",Model.Transactions)
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+
+

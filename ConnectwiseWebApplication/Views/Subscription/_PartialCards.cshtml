@@ -1,0 +1,48 @@
+﻿@using Newtonsoft.Json;
+@model ConnectwiseWebApplication.Models.RegisterationSubscription
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<head>
+    <link rel="stylesheet" href="~/css/cards.css" />
+</head>
+
+@{
+    foreach (var item in Model.subscription)
+    {
+        <div class="col-md-4 col-sm-6">
+            <div class="pricingTable">
+                <span class="icon"><i class="fa fa-globe"></i></span>
+                <div class="pricingTable-header">
+                    <h3 class="title">@item.Description</h3>
+                    <span class="price-value">₹@item.SubscriptionFees</span>
+                </div>
+                <ul class="pricing-content">
+                    <li>Time Period(in months):@item.TimePeriodInMonths</li>
+                    <li>50GB Monthly Bandwidth</li>
+                    <li>10 Subdomains</li>
+                    <li>15 Domains</li>
+                </ul>
+                <a asp-controller="Subscription" asp-action="Details" asp-route-id="@item.SubscriptionId" class="pricingTable-signup">Proceed to Pay</a>
+            </div>
+        </div>
+    }
+    @*<div class="col-md-4 col-sm-6">
+            <div class="pricingTable">
+                <span class="icon"><i class="fa fa-briefcase"></i></span>
+                <div class="pricingTable-header">
+                    <h3 class="title">Business</h3>
+                    <span class="price-value">$20</span>
+                </div>
+                <ul class="pricing-content">
+                    <li>60GB Disk Space</li>
+                    <li>60 Email Accounts</li>
+                    <li>60GB Monthly Bandwidth</li>
+                    <li>15 Subdomains</li>
+                    <li>20 Domains</li>
+                </ul>
+                <a href="#" class="pricingTable-signup">Sign Up</a>
+            </div>
+        </div>*@
+}
